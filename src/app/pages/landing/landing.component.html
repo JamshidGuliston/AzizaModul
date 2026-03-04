@@ -1,0 +1,349 @@
+<div class="landing-container">
+    <!-- Big Yellow Decorative Background Circles -->
+    <div class="bg-decorations">
+        <div class="dec-circle solid c1"></div>
+        <div class="dec-circle dashed c2"></div>
+        <div class="dec-circle solid c3"></div>
+        <div class="dec-circle dashed c4"></div>
+        <div class="dec-circle solid c5"></div>
+        <div class="dec-circle dashed c6"></div>
+        <div class="dec-circle dashed c7"></div>
+        <div class="dec-circle solid c8"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar glass">
+        <div class="nav-content">
+            <div class="brand">
+                <div class="logo-icon">
+                    <mat-icon>menu_book</mat-icon>
+                </div>
+                <span class="brand-name">ENGLISH MASTERY MODULES</span>
+            </div>
+
+            <div class="nav-actions">
+                <!-- Theme Toggle -->
+                <button mat-icon-button (click)="toggleTheme()" class="theme-toggle" aria-label="Toggle theme">
+                    <mat-icon>{{ isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+                </button>
+
+                @if (isStudentLoggedIn()) {
+                <button mat-flat-button color="primary" class="student-login-btn" (click)="goToStudentModules()">
+                    <mat-icon>dashboard</mat-icon>
+                    {{ 'landing.myModules' | translate }}
+                </button>
+                } @else {
+                <button mat-flat-button color="primary" class="student-login-btn" (click)="openAuthDialog()">
+                    STUDENT LOGIN
+                </button>
+                }
+                <button mat-flat-button color="primary" (click)="router.navigate(['/login'])" class="teacher-login-btn">
+                    TEACHER LOGIN
+                </button>
+
+                <button mat-icon-button class="mobile-menu">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero-section">
+        <div class="hero-content">
+            <span class="badge">HOME</span>
+            <h1 class="hero-title">
+                UNLOCK YOUR ENGLISH<br />POTENTIAL
+            </h1>
+            <p class="hero-subtitle">
+                Our modular system empowers you to master Speaking, Writing,
+                and Reading with proven methods. Achieve fluency and confidence!
+            </p>
+
+            <!-- Skill Icons Row -->
+            <div class="hero-skills">
+                <div class="skill-item">
+                    <div class="skill-icon yellow">
+                        <mat-icon>chat_bubble_outline</mat-icon>
+                    </div>
+                    <span>Speaking</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon orange">
+                        <mat-icon>headphones</mat-icon>
+                    </div>
+                    <span>Listening</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon blue">
+                        <mat-icon>edit</mat-icon>
+                    </div>
+                    <span>Writing</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon green">
+                        <mat-icon>menu_book</mat-icon>
+                    </div>
+                    <span>Reading</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-slider-container">
+                <!-- Floating badge -->
+                <div class="floating-badge">
+                    <div class="fb-icon"><mat-icon>trending_up</mat-icon></div>
+                    <div class="fb-text">
+                        <span class="fb-val">850+</span>
+                        <span class="fb-lbl">Faol talabalar</span>
+                    </div>
+                </div>
+
+                <div class="image-slider">
+                    <!-- Cross-fade images -->
+                    <img class="slide s1"
+                        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=600&fit=crop&q=80"
+                        alt="Students studying">
+                    <img class="slide s2"
+                        src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&h=600&fit=crop&q=80"
+                        alt="Student reading">
+                    <img class="slide s3"
+                        src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=600&fit=crop&q=80"
+                        alt="Students teamwork">
+                </div>
+
+                <div class="slider-decorator"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <div class="stats-wrapper">
+        <div class="stats-overview-bar glass">
+            <div class="stat-item">
+                <div class="stat-icon blue"><mat-icon>library_books</mat-icon></div>
+                <div class="stat-text">
+                    <h3>{{ modules().length > 0 ? modules().length : '15' }}+</h3>
+                    <p>Modullar soni</p>
+                </div>
+            </div>
+            <div class="s-divider"></div>
+            <div class="stat-item">
+                <div class="stat-icon yellow"><mat-icon>groups</mat-icon></div>
+                <div class="stat-text">
+                    <h3>1,200+</h3>
+                    <p>Jami talabalar</p>
+                </div>
+            </div>
+            <div class="s-divider"></div>
+            <div class="stat-item">
+                <div class="stat-icon green"><mat-icon>rocket_launch</mat-icon></div>
+                <div class="stat-text">
+                    <h3>850+</h3>
+                    <p>Faol talabalar</p>
+                </div>
+            </div>
+            <div class="s-divider"></div>
+            <div class="stat-item">
+                <div class="stat-icon orange"><mat-icon>workspace_premium</mat-icon></div>
+                <div class="stat-text">
+                    <h3>7.5+</h3>
+                    <p>O'rtacha IELTS</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="methodology-section">
+        <h2>OUR UNIQUE METHODOLOGY</h2>
+
+        <div class="methodology-cards">
+            <!-- Speaking Card -->
+            <div class="method-card blue-card">
+                <div class="card-icon">
+                    <mat-icon>mic</mat-icon>
+                </div>
+                <h3>SPEAKING FLUENCY:</h3>
+                <p>Interactive dialogues & native speaker practice</p>
+            </div>
+
+            <!-- Listening Card -->
+            <div class="method-card yellow-card">
+                <div class="card-icon">
+                    <mat-icon>headphones</mat-icon>
+                </div>
+                <h3>LISTENING COMPREHENSION:</h3>
+                <p>Real-world audio, dictation & accent training</p>
+            </div>
+
+            <!-- Reading & Writing Card -->
+            <div class="method-card orange-card">
+                <div class="card-icon">
+                    <mat-icon>edit</mat-icon>
+                </div>
+                <h3>READING & WRITING MASTERY:</h3>
+                <p>Analytical reading & essay structuring</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Achieve Section -->
+    <section class="achieve-section">
+        <h2>WHAT YOU'LL ACHIEVE</h2>
+
+        <div class="achieve-content">
+            <!-- Features List -->
+            <div class="achieve-features">
+                <div class="chart-icon">
+                    <!-- Inline SVG for chart to match screenshot abstract aesthetic -->
+                    <svg width="120" height="120" viewBox="0 0 100 100" fill="none">
+                        <rect x="20" y="60" width="10" height="30" fill="#fbc02d" />
+                        <rect x="40" y="45" width="10" height="45" fill="#fbc02d" />
+                        <rect x="60" y="30" width="10" height="60" fill="#fbc02d" />
+                        <path d="M15 90 L80 90" stroke="#fbc02d" stroke-width="4" stroke-linecap="round" />
+                        <path d="M15 90 L15 10" stroke="#fbc02d" stroke-width="4" stroke-linecap="round" />
+                        <path d="M25 60 L45 45 L65 30 L85 15" stroke="#fff" stroke-width="3" fill="none"
+                            stroke-linecap="round" />
+                        <polygon points="85 10 90 20 80 20" fill="#fbc02d" />
+                    </svg>
+                </div>
+                <ul class="features-list">
+                    <li><mat-icon>check_circle</mat-icon> Advanced Grammar Proficiency</li>
+                    <li><mat-icon>check_circle</mat-icon> Expanded Vocabulary & Idioms</li>
+                    <li><mat-icon>check_circle</mat-icon> Confident Communication in Any Setting</li>
+                    <li><mat-icon>check_circle</mat-icon> Official Exam Preparation (IELTS/TOEFL)</li>
+                    <li><mat-icon>check_circle</mat-icon> Global Opportunities Unlocked</li>
+                </ul>
+            </div>
+
+            <!-- Student Portfolios/Certificates (Grid) -->
+            <div class="achieve-grid">
+                <!-- Random generic images indicating student success -->
+                <div class="student-card"><img
+                        src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=300&q=80" alt="Student 1" />
+                </div>
+                <div class="student-card"><img
+                        src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&q=80" alt="Student 2" />
+                </div>
+                <div class="student-card"><img
+                        src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?w=300&q=80" alt="Student 3" />
+                </div>
+                <div class="student-card"><img
+                        src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=300&q=80" alt="Student 4" />
+                </div>
+                <div class="student-card"><img
+                        src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=300&q=80" alt="Student 5" />
+                </div>
+                <div class="student-card"><img
+                        src="https://images.unsplash.com/photo-1552581234-26160f608093?w=300&q=80" alt="Student 6" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Modules Section -->
+    <section id="modules" class="modules-section">
+        <div class="section-header center">
+            <h2>OUR PLATFORM MODULES</h2>
+            <p>Explore the available courses and start learning today.</p>
+        </div>
+
+        <div class="modules-grid">
+            @for (mod of modules(); track mod.id) {
+            <div class="module-card">
+                <div class="card-image" [style.background-image]="mod.thumbnail ? 'url(' + mod.thumbnail + ')' : ''">
+                    @if (!mod.thumbnail) {
+                    <div class="placeholder-icon">
+                        <mat-icon>library_books</mat-icon>
+                    </div>
+                    }
+                </div>
+                <div class="card-content">
+                    <h3>{{ mod.title }}</h3>
+                    <p>{{ mod.description || ('landing.noDescription' | translate) }}</p>
+                    <div class="card-meta">
+                        <div class="meta-item">
+                            <mat-icon>menu_book</mat-icon>
+                            <span>{{ mod.lessons_count || 0 }} {{ 'landing.lessons' | translate }}</span>
+                        </div>
+                    </div>
+                    <button mat-stroked-button color="accent" class="view-btn" (click)="onBoshlash()">
+                        START COURSE
+                    </button>
+                </div>
+            </div>
+            }
+        </div>
+    </section>
+
+    <!-- Teacher Info & Certificates Section -->
+    <section class="teacher-section">
+        <h2>MEET YOUR TEACHER</h2>
+        <div class="teacher-container glass">
+            <div class="teacher-photo">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80" alt="Ms. Aziza" />
+            </div>
+            <div class="teacher-info">
+                <h3>Aziza Suvondiqova</h3>
+                <p class="teacher-bio">
+                    A highly qualified English educator with 10+ years of active teaching. Specialist in IELTS
+                    preparation and conversational fluency. I believe that learning a language opens the doors to
+                    unlimited global opportunities.
+                </p>
+                <div class="certificates">
+                    <div class="cert-item"><mat-icon>workspace_premium</mat-icon> <span>IELTS 8.5</span></div>
+                    <div class="cert-item"><mat-icon>workspace_premium</mat-icon> <span>TESOL Certified</span></div>
+                    <div class="cert-item"><mat-icon>workspace_premium</mat-icon> <span>CEFR C2 Mastery</span></div>
+                </div>
+                <button mat-stroked-button color="primary" class="about-btn" (click)="scrollToModules()">SEE MY
+                    MODULES</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <h2>WHAT OUR STUDENTS SAY</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">
+                    <mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon>
+                </div>
+                <p>"I couldn't speak a word of English. Now I'm working in an international company. Ms. Aziza's
+                    methodology is simply amazing!"</p>
+                <div class="author">- Malika R. (IELTS 7.5)</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">
+                    <mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon>
+                </div>
+                <p>"The listening and reading modules prepared me completely for my IELTS exam. Got an 8.0 overall
+                    score, highly recommend!"</p>
+                <div class="author">- Rustam S. (IELTS 8.0)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Footer Section -->
+    <footer class="footer-cta">
+        <div class="cta-left">
+            <h2>READY TO START YOUR JOURNEY?</h2>
+            <button mat-flat-button color="accent" class="enroll-btn" (click)="onBoshlash()">
+                ENROLL NOW & GET 20% OFF
+            </button>
+            <div class="social-icons">
+                <mat-icon>facebook</mat-icon>
+                <mat-icon>smart_display</mat-icon>
+                <mat-icon>share</mat-icon>
+            </div>
+        </div>
+        <div class="cta-right">
+            <div class="subscribe-box">
+                <input type="email" placeholder="Email Address" />
+                <button mat-flat-button color="accent">SUBSCRIBE</button>
+            </div>
+            <div class="limited-offer">Limited-time offer!</div>
+        </div>
+    </footer>
+</div>
